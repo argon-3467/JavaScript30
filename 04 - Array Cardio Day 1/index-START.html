@@ -38,29 +38,56 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    let fifteen = inventors.filter(inventor => {
+      return inventor.year >= 1500 && inventor.year < 1600;
+    });
+    console.table(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    let fullName = inventors.map(inventor => inventor.first + " " + inventor.last);
+    console.table(fullName);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    inventors.sort()
+    let earliestBorn = inventors.sort((l, r) => l.year - r.year);
+    console.table(earliestBorn);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    let yearsLived = inventors.reduce((total, inventor) => total + inventor.passed - inventor.year, 0);
+    console.log(`Total years Lived by all the inventors is : ${yearsLived}`);
 
     // 5. Sort the inventors by years lived
-
+    let oldest = inventors.sort((l, r) => {
+      return l.passed - l.year - (r.passed - r.year)
+    });
+    oldest.forEach(person => person.lived = person.passed - person.year);
+    // console.log(something);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    let arr5 = people.sort((a, b) => {
+      [alast, afirst] = a.split(',');
+      [blast, bfirst] = b.split(',');
+      return alast - blast;
+    });
+    console.log(arr5);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    let transportation = {};
+    data.forEach(value => {
+      if(!transportation[value])
+        transportation[value] = 0;
+      transportation[value]++;
+    });
+    console.table(transportation);
   </script>
 </body>
 </html>
